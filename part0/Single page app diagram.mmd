@@ -1,0 +1,17 @@
+sequenceDiagram
+  participant Browser as Browser
+  participant Server as Server
+
+  Browser ->> Server: "GET" https://studies.cs.helsinki.fi/exampleapp/spa
+  Server -->> Browser: HTML Document (SPA Page)
+  Note right of Browser: The SPA page is loaded in the browser.
+
+  Browser ->> Server: "GET" https://studies.cs.helsinki.fi/exampleapp/main.js
+  Server -->> Browser: JavaScript File
+  Note right of Browser: The JavaScript file is downloaded and executed.
+
+  Browser ->> Server: "GET" https://studies.cs.helsinki.fi/exampleapp/data.json
+  Server -->> Browser: JSON Content (Existing Notes)
+  Note right of Browser: The SPA dynamically renders the notes from the JSON data.
+
+  Note right of Browser: User can now add and interact with notes without full-page reloads.
