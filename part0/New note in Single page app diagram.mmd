@@ -1,0 +1,26 @@
+sequenceDiagram
+  participant Browser as Browser
+  participant Server as Server
+
+  Browser ->> Server: "GET" https://studies.cs.helsinki.fi/exampleapp/spa
+  Server -->> Browser: HTML Document (SPA Page)
+  Note right of Browser: The SPA page is loaded in the browser.
+
+  Browser ->> Server: "GET" https://studies.cs.helsinki.fi/exampleapp/main.js
+  Server -->> Browser: JavaScript File
+  Note right of Browser: The JavaScript file is downloaded and executed.
+
+  Browser ->> Server: "GET" https://studies.cs.helsinki.fi/exampleapp/data.json
+  Server -->> Browser: JSON Content (Existing Notes)
+  Note right of Browser: The SPA dynamically renders the existing notes.
+
+  Note right of Browser: User enters a new note in the input field and clicks "Save".
+  Browser ->> Server: "POST" https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+  Note right of Browser: The new note is sent to the server using JavaScript without reloading the page.
+
+  Server -->> Browser: Response confirming note saved
+  Note right of Browser: The SPA updates the note list dynamically.
+
+  Browser ->> Server: "GET" https://studies.cs.helsinki.fi/exampleapp/data.json
+  Server -->> Browser: JSON Content (Updated Notes)
+  Note right of Browser: The new note appears on the screen without a full-page refresh.
